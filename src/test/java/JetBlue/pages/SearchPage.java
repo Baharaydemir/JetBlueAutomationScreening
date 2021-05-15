@@ -4,6 +4,7 @@ import JetBlue.utils.BrowserUtils;
 import JetBlue.utils.ConfigurationReader;
 import JetBlue.utils.DriverFactory;
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -19,9 +20,10 @@ public class SearchPage {
     static WebDriverWait wait= new WebDriverWait(DriverFactory.getDriver(),15);
 
 
-    public void navigateSearchPage() {
-        DriverFactory.getDriver().get(ConfigurationReader.getProperty("url"));
-    }
+
+
+    //@FindBy(xpath = "(//a[@role='button' and @class='call'])")
+    //private WebElement cookiesAcception;
 
     @FindBy(xpath = "//input[@id = 'jb-autocomplete-1-search']")
     private WebElement searchinput;
@@ -34,7 +36,7 @@ public class SearchPage {
     private WebElement searchBtnInput;
     //(//span[ @class='ng-star-inserted'])[1]
 
-    @FindBy(xpath= "//span[.='Please enter a valid city.']")
+    @FindBy(xpath= "//span[. = 'Please enter a valid city.']")
      private WebElement invalidcitymessage;
 
 
@@ -60,6 +62,21 @@ public class SearchPage {
         PageFactory.initElements(DriverFactory.getDriver(),this);
     }
 
+    public void navigateSearchPage() {
+        DriverFactory.getDriver().get(ConfigurationReader.getProperty("url"));
+    }
+
+    //public void setCookies(){DriverFactory.getDriver().switchTo().frame(2);
+//        Alert alert = DriverFactory.getDriver().switchTo().alert();
+//        alert.accept();
+     //   cookiesAcception.click();
+    //}
+
+  //public void setCookies(){
+
+      //  Alert alert = DriverFactory.getDriver().switchTo().alert();
+       // alert.accept();
+ // }
 
     public void setCity(){searchinput.sendKeys("New York, NY (JFK)");}
 
